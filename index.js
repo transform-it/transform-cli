@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { transform } = require('babel-core')
 const transformJsonTypes = require('transform-json-types')
 const babelJsonToProptypes = require('babel-plugin-json-to-proptypes')
