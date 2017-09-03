@@ -1,12 +1,15 @@
 const { transform } = require('babel-core')
 const transformJsonTypes = require('transform-json-types')
-const jsonToProptypes = require('babel-plugin-json-to-proptypes')
+const babelJsonToProptypes = require('babel-plugin-json-to-proptypes')
 const program = require('commander')
 const getStdin = require('get-stdin')
 const R = require('ramda')
 
 const isString = R.is(String)
 const jsonTo = R.flip(transformJsonTypes)
+const jsonToFlow = jsonTo('flow')
+const jsonToTS = jsonTo('typescript')
+const jsonToProptypes = x => transform(x, { plugins: [babelJsonToProptypes] }).code + "\n"
 
 program
   .option('-t, --to <output>', 'set output format', /^(flow|typescript|proptypes)$/)
@@ -19,9 +22,9 @@ if (! isString(program.to)) {
 
 getStdin().then(i => {
   const transformer = R.prop(program.to, {
-    flow: jsonTo('flow'),
-    typescript: jsonTo('typescript'),
-    proptypes: R.flip(transform)({ plugins: [jsonToProptypes] }),
+    flow: jsonToFlow,
+    typescript: jsonToTS,
+    proptypes: jsonToProptypes,
   })
   process.stdout.write(transformer(i))
 })
