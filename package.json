@@ -1,0 +1,21 @@
+{
+  "name": "transform-cli",
+  "version": "0.0.1",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "DanielFGray <DanielFGray@gmail.com>",
+  "license": "GPL-3.0",
+  "description": "",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-json-to-proptypes": "^0.1.0",
+    "commander": "^2.11.0",
+    "get-stdin": "^5.0.1",
+    "ramda": "^0.24.1",
+    "transform-json-types": "^0.1.1"
+  }
+}
