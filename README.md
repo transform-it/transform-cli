@@ -17,5 +17,10 @@ Currently supports:
 ### Example:
 
 ```
-curl <someurl> | index.js -t flow
+curl <someurl> | ./index.js -t flow
 ```
+
+## TODO
+
+[  ] Publish as NPM package
+[  ] Support the rest of the transformations 
