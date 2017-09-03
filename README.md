@@ -22,5 +22,5 @@ curl <someurl> | ./index.js -t flow
 
 ## TODO
 
-[] Publish as NPM package
-[] Support the rest of the transformations
+* Publish as NPM package
+* Support the rest of the transformations
