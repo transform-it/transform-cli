@@ -8,12 +8,12 @@ const R = require('ramda')
 
 const isString = R.is(String)
 const jsonTo = R.flip(transformJsonTypes)
-const jsonToFlow = jsonTo('flow')
-const jsonToTS = jsonTo('typescript')
+const jsonToFlow = jsonTo({ lang: 'flow' })
+const jsonToTS = jsonTo({ lang: 'typescript' })
 const jsonToProptypes = x => transform(x, { plugins: [babelJsonToProptypes] }).code + "\n"
 
 program
-  .option('-t, --to <output>', 'set output format', /^(flow|typescript|proptypes)$/)
+  .option('-t, --to <output>', 'set output format', /^(flow|typescript|proptypes|scala|rust)$/i)
   .parse(process.argv)
 
 if (! isString(program.to)) {
@@ -21,12 +21,10 @@ if (! isString(program.to)) {
   process.exit(1)
 }
 
-getStdin().then(i => {
-  const transformer = R.prop(program.to, {
+getStdin().then(R.prop(program.to.toLowerCase(), {
     flow: jsonToFlow,
     typescript: jsonToTS,
     proptypes: jsonToProptypes,
-  })
-  process.stdout.write(transformer(i))
-})
+  }))
+  .then(x => process.stdout.write(x))
   .catch(e => { console.error(e); process.exit(1) })
