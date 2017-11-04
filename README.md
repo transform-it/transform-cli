@@ -1,5 +1,7 @@
 # transform-cli
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/transform-it/transform-cli.svg)](https://greenkeeper.io/)
+
 Transforms JSON into various type definitions
 
 Currently supports:
